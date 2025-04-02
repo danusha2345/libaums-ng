@@ -295,8 +295,7 @@ class ScsiBlockDevice(private val usbCommunication: UsbCommunication, private va
                 } while (read < transferLength)
 
                 if (read != transferLength) {
-                    throw IOException("Unexpected command size (" + read + ") on response to "
-                            + command)
+                    throw IOException("Unexpected command size ($read) on response to $command")
                 }
             } else {
                 written = 0
