@@ -14,18 +14,28 @@ A library to access USB mass storage devices (pen drives, external HDDs, card re
 
 ### Install
 
-The library can be included into your project like this:
+This fork is published via [JitPack](https://jitpack.io). Add the JitPack repository
+(in `settings.gradle` `dependencyResolutionManagement`, or your root `build.gradle`):
 
 ```ruby
-implementation 'me.jahnen.libaums:core:0.10.0'
+maven { url 'https://jitpack.io' }
+```
+
+Then add the core dependency:
+
+```ruby
+implementation 'com.github.danusha2345.libaums-ng:libaums:v1.0.0'
 ```
 
 If you need the HTTP or the storage provider module:
 
 ```ruby
-implementation 'me.jahnen.libaums:httpserver:0.6.2'
-implementation 'me.jahnen.libaums:storageprovider:0.6.2'
+implementation 'com.github.danusha2345.libaums-ng:httpserver:v1.0.0'
+implementation 'com.github.danusha2345.libaums-ng:storageprovider:v1.0.0'
 ```
+
+> The exact per-module artifact names for each tag are listed on the
+> [JitPack build page](https://jitpack.io/#danusha2345/libaums-ng).
 
 ### Basics
 #### Query available mass storage devices
