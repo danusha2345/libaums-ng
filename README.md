@@ -1,5 +1,9 @@
+[![Boosty](https://img.shields.io/badge/Boosty-Buy_me_a_coffee-FF7143?logo=boosty&logoColor=white&style=for-the-badge)](https://boosty.to/danusha/donate)
+
 libaums
 =======
+
+> Maintained fork of [magnusja/libaums](https://github.com/magnusja/libaums). If this library saves you time, consider supporting development via [Boosty](https://boosty.to/danusha/donate) — international cards accepted.
 [![Javadocs](https://www.javadoc.io/badge/me.jahnen.libaums/core.svg)](https://www.javadoc.io/doc/me.jahnen.libaums/core)
 [ ![Build Status](https://travis-ci.org/magnusja/libaums.svg?branch=develop)](https://travis-ci.org/magnusja/libaums)[ ![codecov](https://codecov.io/gh/magnusja/libaums/branch/develop/graph/badge.svg)](https://codecov.io/gh/magnusja/libaums)[ ![Codacy Badge](https://api.codacy.com/project/badge/Grade/31124a2747de41b49c040b9f7979c2a6)](https://www.codacy.com/manual/magnusja/libaums?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=magnusja/libaums&amp;utm_campaign=Badge_Grade)
 [ ![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/libaums)
