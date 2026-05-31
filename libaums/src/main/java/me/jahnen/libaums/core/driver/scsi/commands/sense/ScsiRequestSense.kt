@@ -51,7 +51,9 @@ class ScsiRequestSense(private val allocationLength: Byte, lun: Byte) :
 
     override fun dynamicSizeFromPartialResponse(buffer: ByteBuffer): Int {
         buffer.order(ByteOrder.BIG_ENDIAN)
-        return buffer.get(SENSE_BYTE_ADDR).toInt() + SENSE_BYTE_ADDR + 1
+        // additionalSenseLength is an unsigned byte; reading it signed would yield a
+        // negative total for lengths >= 128 and crash the buffer limit() call.
+        return (buffer.get(SENSE_BYTE_ADDR).toInt() and 0xFF) + SENSE_BYTE_ADDR + 1
     }
 
     companion object {

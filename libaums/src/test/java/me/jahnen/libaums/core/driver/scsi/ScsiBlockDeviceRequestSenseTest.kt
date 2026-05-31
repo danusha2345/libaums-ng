@@ -89,4 +89,18 @@ class ScsiBlockDeviceRequestSenseTest {
             // expected: the sense response is parsed and surfaced as an IOException / SenseException
         }
     }
+
+    @Test
+    fun requestSenseHandlesAdditionalSenseLengthAbove127() {
+        // additionalSenseLength is an unsigned byte; values >= 128 must not be read as negative.
+        val device = ScsiBlockDevice(FakeSenseUsbCommunication(additionalSenseLength = 0x88), lun = 0)
+        try {
+            device.init()
+            fail("init() was expected to surface the device's sense error")
+        } catch (e: IllegalArgumentException) {
+            fail("sense length read as signed -> bad limit (${e.message})")
+        } catch (e: IOException) {
+            // expected: the sense response is parsed and surfaced as an IOException / SenseException
+        }
+    }
 }
