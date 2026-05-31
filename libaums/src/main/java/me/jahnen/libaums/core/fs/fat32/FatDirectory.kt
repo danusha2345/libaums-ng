@@ -207,7 +207,7 @@ internal constructor(
      */
     private fun addEntry(lfnEntry: FatLfnDirectoryEntry, entry: FatDirectoryEntry) {
         entries!!.add(lfnEntry)
-        lfnMap[lfnEntry.name.toLowerCase(Locale.getDefault())] = lfnEntry
+        lfnMap[lfnEntry.name.toLowerCase(Locale.ROOT)] = lfnEntry
         shortNameMap[entry.shortName!!] = entry
     }
 
@@ -225,7 +225,7 @@ internal constructor(
      */
     internal fun removeEntry(lfnEntry: FatLfnDirectoryEntry?) {
         entries!!.remove(lfnEntry)
-        lfnMap.remove(lfnEntry!!.name.toLowerCase(Locale.getDefault()))
+        lfnMap.remove(lfnEntry!!.name.toLowerCase(Locale.ROOT))
         shortNameMap.remove(lfnEntry.actualEntry.shortName)
     }
 
@@ -301,7 +301,7 @@ internal constructor(
 
     @Throws(IOException::class)
     override fun createFile(name: String): FatFile {
-        if (lfnMap.containsKey(name.toLowerCase(Locale.getDefault())))
+        if (lfnMap.containsKey(name.toLowerCase(Locale.ROOT)))
             throw IOException("Item already exists!")
 
         init() // initialise the directory before creating files
@@ -325,7 +325,7 @@ internal constructor(
 
     @Throws(IOException::class)
     override fun createDirectory(name: String): FatDirectory {
-        if (lfnMap.containsKey(name.toLowerCase(Locale.getDefault())))
+        if (lfnMap.containsKey(name.toLowerCase(Locale.ROOT)))
             throw IOException("Item already exists!")
 
         init() // initialise the directory before creating files
@@ -457,7 +457,7 @@ internal constructor(
         // TODO check if destination is really on the same physical device or
         // partition!
 
-        if (destination.lfnMap.containsKey(entry!!.name.toLowerCase(Locale.getDefault())))
+        if (destination.lfnMap.containsKey(entry!!.name.toLowerCase(Locale.ROOT)))
             throw IOException("item already exists in destination!")
 
         init()
@@ -498,7 +498,7 @@ internal constructor(
         // TODO check if destination is really on the same physical device or
         // partition!
 
-        if (destination.lfnMap.containsKey(entry.name.toLowerCase(Locale.getDefault())))
+        if (destination.lfnMap.containsKey(entry.name.toLowerCase(Locale.ROOT)))
             throw IOException("item already exists in destination!")
 
         init()

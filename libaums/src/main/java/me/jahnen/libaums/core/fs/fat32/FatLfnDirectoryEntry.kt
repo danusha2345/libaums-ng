@@ -18,6 +18,7 @@
 package me.jahnen.libaums.core.fs.fat32
 
 import java.nio.ByteBuffer
+import java.util.Locale
 
 /**
  * This class represents a long file name entry. The long file name can be
@@ -100,9 +101,9 @@ internal class FatLfnDirectoryEntry
             }
 
             if (actualEntry.isShortNameLowerCase)
-                name = name.toLowerCase()
+                name = name.toLowerCase(Locale.ROOT)
             if (actualEntry.isShortNameExtLowerCase)
-                ext = ext.toLowerCase()
+                ext = ext.toLowerCase(Locale.ROOT)
 
             if (ext.isNotEmpty())
                 name = "$name.$ext"
