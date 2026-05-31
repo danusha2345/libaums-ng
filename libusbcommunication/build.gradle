@@ -2,9 +2,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.jetbrains.dokka'
 
+// local.properties may be absent (e.g. on JitPack/CI). Only this module's native libusb
+// build needs `libusb.dir`; tolerate its absence so the project still configures.
 Properties props = new Properties()
-props.load(new FileInputStream(project.rootProject.file('local.properties')))
-String libusbDir = props['libusb.dir']
+File localPropsFile = project.rootProject.file('local.properties')
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { props.load(it) }
+}
+String libusbDir = props['libusb.dir'] ?: ""
 
 ext {
     PUBLISH_GROUP_ID = 'me.jahnen.libaums'
