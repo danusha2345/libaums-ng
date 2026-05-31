@@ -30,8 +30,8 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 33
-        compileSdk 33
+        targetSdkVersion 35
+        compileSdk 35
 
         externalNativeBuild {
             cmake {
