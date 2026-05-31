@@ -290,6 +290,12 @@ class ScsiBlockDevice(private val usbCommunication: UsbCommunication, private va
                     read += usbCommunication.bulkInTransfer(inBuffer)
                     if (command.bCbwDynamicSize) {
                         transferLength = command.dynamicSizeFromPartialResponse(inBuffer)
+                        // A device may report a (sense) length larger than the buffer we
+                        // allocated and requested in the CBW; never grow past it (issue #410).
+                        val maxLength = inBuffer.capacity() - initialPosition
+                        if (transferLength > maxLength) {
+                            transferLength = maxLength
+                        }
                         inBuffer.limit(initialPosition + transferLength)
                     }
                 } while (read < transferLength)
