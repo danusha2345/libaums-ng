@@ -24,9 +24,9 @@ android {
     }
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 33
-        compileSdk 33
+        minSdkVersion 24
+        targetSdkVersion 35
+        compileSdk 35
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
