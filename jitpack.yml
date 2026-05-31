@@ -1,2 +1,8 @@
 jdk:
   - openjdk21
+# Build only the modules that don't need an external libusb checkout.
+# libusbcommunication requires local.properties `libusb.dir`; its native CMake
+# build fails on JitPack (-DLIBUSB_PATH=null). The core backend uses its own
+# native code and does not depend on libusb.
+install:
+  - ./gradlew :libaums:publishToMavenLocal :httpserver:publishToMavenLocal :storageprovider:publishToMavenLocal --no-daemon -x test

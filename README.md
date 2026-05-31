@@ -24,7 +24,7 @@ maven { url 'https://jitpack.io' }
 Then add the core dependency:
 
 ```ruby
-implementation 'com.github.danusha2345.libaums-ng:libaums:v1.0.0'
+implementation 'com.github.danusha2345.libaums-ng:core:v1.0.0'
 ```
 
 If you need the HTTP or the storage provider module:

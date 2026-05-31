@@ -50,7 +50,6 @@ afterEvaluate {
                     from components.java
                 }
 
-                artifact androidSourcesJar
                 artifact javadocJar
 
               // Mostly self-explanatory metadata
@@ -92,9 +91,21 @@ afterEvaluate {
 }
 
 signing {
-    useInMemoryPgpKeys(
-            rootProject.ext["signing.key"],
-            rootProject.ext["signing.password"],
-    )
-    sign publishing.publications
+    def signingKey = rootProject.ext["signing.key"]
+    // Only sign when a key is actually configured (Sonatype release). On JitPack / local
+    // builds without keys, skip signing so publishToMavenLocal works.
+    if (signingKey) {
+        useInMemoryPgpKeys(signingKey, rootProject.ext["signing.password"])
+        sign publishing.publications
+    }
+}
+
+// Gradle 8 enforces explicit task dependencies. The publication consumes the sources and
+// javadoc jars, so the metadata/publish tasks must depend on them explicitly.
+tasks.matching {
+    it.name.startsWith('generateMetadataFileFor') ||
+    it.name.startsWith('publishReleasePublication') ||
+    it.name == 'publishToMavenLocal'
+}.configureEach {
+    dependsOn('androidSourcesJar', 'javadocJar')
 }
