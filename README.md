@@ -8,7 +8,7 @@ libaums
 [ ![Build Status](https://travis-ci.org/magnusja/libaums.svg?branch=develop)](https://travis-ci.org/magnusja/libaums)[ ![codecov](https://codecov.io/gh/magnusja/libaums/branch/develop/graph/badge.svg)](https://codecov.io/gh/magnusja/libaums)[ ![Codacy Badge](https://api.codacy.com/project/badge/Grade/31124a2747de41b49c040b9f7979c2a6)](https://www.codacy.com/manual/magnusja/libaums?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=magnusja/libaums&amp;utm_campaign=Badge_Grade)
 [ ![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/libaums)
 
-A library to access USB mass storage devices (pen drives, external HDDs, card readers) using the Android USB Host API. Currently it supports the SCSI command set and the FAT32 file system.
+A library to access USB mass storage devices (pen drives, external HDDs, card readers) using the Android USB Host API. Currently it supports the SCSI command set, the FAT32 file system (read/write), and exFAT (read-only).
 
 ## How to use
 
@@ -24,14 +24,14 @@ maven { url 'https://jitpack.io' }
 Then add the core dependency:
 
 ```ruby
-implementation 'com.github.danusha2345.libaums-ng:core:v1.0.3'
+implementation 'com.github.danusha2345.libaums-ng:core:v1.0.4'
 ```
 
 If you need the HTTP or the storage provider module:
 
 ```ruby
-implementation 'com.github.danusha2345.libaums-ng:httpserver:v1.0.3'
-implementation 'com.github.danusha2345.libaums-ng:storageprovider:v1.0.3'
+implementation 'com.github.danusha2345.libaums-ng:httpserver:v1.0.4'
+implementation 'com.github.danusha2345.libaums-ng:storageprovider:v1.0.4'
 ```
 
 > The exact per-module artifact names for each tag are listed on the
