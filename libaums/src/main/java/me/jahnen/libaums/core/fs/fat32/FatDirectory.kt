@@ -387,6 +387,27 @@ internal constructor(
     }
 
     @Throws(IOException::class)
+    override fun setCreatedAt(timestamp: Long) {
+        check(!isRoot) { "root dir!" }
+        entry!!.actualEntry.createdDateTime = timestamp
+        parent!!.write()
+    }
+
+    @Throws(IOException::class)
+    override fun setLastModified(timestamp: Long) {
+        check(!isRoot) { "root dir!" }
+        entry!!.actualEntry.lastModifiedDateTime = timestamp
+        parent!!.write()
+    }
+
+    @Throws(IOException::class)
+    override fun setLastAccessed(timestamp: Long) {
+        check(!isRoot) { "root dir!" }
+        entry!!.actualEntry.lastAccessedDateTime = timestamp
+        parent!!.write()
+    }
+
+    @Throws(IOException::class)
     override fun list(): Array<String> {
         init()
         val list = ArrayList<String>(entries!!.size)

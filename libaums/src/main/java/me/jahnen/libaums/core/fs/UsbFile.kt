@@ -130,6 +130,32 @@ interface UsbFile : Closeable {
     fun lastAccessed(): Long
 
     /**
+     * Sets the time this directory or file was created and persists the change.
+     * Useful to preserve a source file's timestamps when copying (issue #357).
+     * The default throws; the FAT32 implementation supports it.
+     *
+     * @param timestamp Time in milliseconds since January 1 00:00:00, 1970 UTC
+     */
+    @Throws(IOException::class)
+    fun setCreatedAt(timestamp: Long): Unit = throw UnsupportedOperationException()
+
+    /**
+     * Sets the time this directory or file was last modified and persists the change.
+     *
+     * @param timestamp Time in milliseconds since January 1 00:00:00, 1970 UTC
+     */
+    @Throws(IOException::class)
+    fun setLastModified(timestamp: Long): Unit = throw UnsupportedOperationException()
+
+    /**
+     * Sets the time this directory or file was last accessed and persists the change.
+     *
+     * @param timestamp Time in milliseconds since January 1 00:00:00, 1970 UTC
+     */
+    @Throws(IOException::class)
+    fun setLastAccessed(timestamp: Long): Unit = throw UnsupportedOperationException()
+
+    /**
      * Lists all files in the directory. Throws an exception if called on a
      * file.
      *

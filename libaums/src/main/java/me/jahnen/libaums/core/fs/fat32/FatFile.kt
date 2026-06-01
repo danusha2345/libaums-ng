@@ -87,6 +87,24 @@ internal constructor(private val blockDevice: BlockDeviceDriver, private val fat
         return entry.actualEntry.lastAccessedDateTime
     }
 
+    @Throws(IOException::class)
+    override fun setCreatedAt(timestamp: Long) {
+        entry.actualEntry.createdDateTime = timestamp
+        parent!!.write()
+    }
+
+    @Throws(IOException::class)
+    override fun setLastModified(timestamp: Long) {
+        entry.actualEntry.lastModifiedDateTime = timestamp
+        parent!!.write()
+    }
+
+    @Throws(IOException::class)
+    override fun setLastAccessed(timestamp: Long) {
+        entry.actualEntry.lastAccessedDateTime = timestamp
+        parent!!.write()
+    }
+
     override fun list(): Array<String> {
         throw UnsupportedOperationException("This is a file!")
     }
